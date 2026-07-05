@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎤 Result</h1>
+
+    <h2>{{ score }}%</h2>
+    <p>{{ feedback }}</p>
+
+    <h3>Performance Graph 📈</h3>
+
+    <canvas id="myChart"></canvas>
+
+    <br>
+    <a href="/">⬅ Go Back</a>
+
+</div>
+
+<script>
+let scores = {{ scores | tojson }};
+
+let ctx = document.getElementById('myChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: scores.map((_, i) => "Attempt " + (i + 1)),
+        datasets: [{
+            label: "Confidence Score",
+            data: scores,
+            borderColor: "cyan",
+            backgroundColor: "rgba(0,255,255,0.2)",
+            borderWidth: 3,
+            pointRadius: 6,
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                min: 0,
+                max: 100
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

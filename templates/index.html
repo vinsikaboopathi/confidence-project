@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Voice Confidence Analyzer</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎤 VOICE CONFIDENCE ANALYZER</h1>
+
+    <p class="subtitle">
+        Analyze your voice confidence professionally
+    </p>
+
+    <div class="top-section">
+
+        <!-- LEFT -->
+        <div class="card">
+
+            <h2>🎙 Voice Input</h2>
+
+            <input type="file">
+
+            <div class="buttons">
+
+                <button class="start"
+                onclick="startRecording()">
+
+                🎤 Start
+
+                </button>
+
+                <button class="stop"
+                onclick="stopRecording()">
+
+                ⏹ Stop
+
+                </button>
+
+                <button class="done"
+                onclick="generateResult()">
+
+                ✅ Done
+
+                </button>
+
+            </div>
+
+            <h3 id="status"></h3>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="card">
+
+            <h2>📊 Result Summary</h2>
+
+            <div class="circle">
+
+                <h1 id="score">0%</h1>
+
+            </div>
+
+            <h2 id="level">WAITING...</h2>
+
+        </div>
+
+    </div>
+
+    <!-- GRAPH -->
+    <div class="graph-card">
+
+        <h2>📈 Confidence Over Time</h2>
+
+        <canvas id="myChart"></canvas>
+
+    </div>
+
+</div>
+
+<script>
+
+let chart;
+
+let attempts = [];
+let scores = [];
+
+function startRecording(){
+
+    document.getElementById("status").innerHTML =
+    "🎤 Recording Started... Speak Now";
+
+}
+
+function stopRecording(){
+
+    document.getElementById("status").innerHTML =
+    "⏹ Recording Stopped";
+
+}
+
+function generateResult(){
+
+    // RANDOM SCORE
+    let score =
+    Math.floor(Math.random() * 60) + 40;
+
+    let level = "";
+    let color = "";
+
+    // LEVEL CHECK
+    if(score >= 75){
+
+        level = "HIGH";
+        color = "#00ff99";
+
+    }
+
+    else if(score >= 50){
+
+        level = "MEDIUM";
+        color = "#ffaa00";
+
+    }
+
+    else{
+
+        level = "LOW";
+        color = "#ff4444";
+
+    }
+
+    // UPDATE SCORE
+    document.getElementById("score").innerHTML =
+    score + "%";
+
+    document.getElementById("score").style.color =
+    color;
+
+    // UPDATE LEVEL
+    document.getElementById("level").innerHTML =
+    level;
+
+    document.getElementById("level").style.color =
+    color;
+
+    // SAVE HISTORY
+    scores.push(score);
+
+    attempts.push(
+        "Attempt " + (attempts.length + 1)
+    );
+
+    // CHART
+    const ctx =
+    document.getElementById('myChart');
+
+    if(chart){
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: attempts,
+
+            datasets: [{
+
+                label: 'Confidence Score',
+
+                data: scores,
+
+                backgroundColor: [
+
+                    '#7b68ff',
+                    '#6a5cff',
+                    '#8a7dff',
+                    '#9a8cff',
+                    '#b09cff',
+                    '#7c4dff'
+
+                ],
+
+                borderRadius: 10,
+                borderWidth: 1
+
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    labels: {
+                        color: "white"
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+                    max:100,
+
+                    ticks:{
+                        color:"white"
+                    }
+
+                },
+
+                x:{
+
+                    ticks:{
+                        color:"white"
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

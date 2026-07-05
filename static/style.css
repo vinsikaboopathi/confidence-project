@@ -1,0 +1,166 @@
+body{
+
+    margin:0;
+    padding:0;
+
+    font-family: Arial;
+
+    background:
+    linear-gradient(to right, #000428, #004e92);
+
+    color:white;
+
+}
+
+.container{
+
+    width:90%;
+    margin:auto;
+    padding:20px;
+
+}
+
+h1{
+
+    text-align:center;
+
+}
+
+.subtitle{
+
+    text-align:center;
+    margin-bottom:30px;
+    color:#cccccc;
+
+}
+
+.top-section{
+
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+.card{
+
+    flex:1;
+
+    background:#071426;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0px 0px 15px black;
+
+}
+
+.graph-card{
+
+    margin-top:30px;
+
+    background:#071426;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0px 0px 15px black;
+
+}
+
+.buttons{
+
+    margin-top:20px;
+
+}
+
+button{
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    margin-right:10px;
+
+}
+
+.start{
+
+    background:#00c853;
+
+}
+
+.stop{
+
+    background:#ff1744;
+
+}
+
+.done{
+
+    background:#2979ff;
+
+}
+
+button:hover{
+
+    opacity:0.8;
+
+}
+
+input{
+
+    margin-top:20px;
+    color:white;
+
+}
+
+.circle{
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    border:10px solid #6a5cff;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin:auto;
+
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+
+#score{
+
+    font-size:40px;
+
+}
+
+#level{
+
+    text-align:center;
+    font-size:30px;
+
+}
+
+canvas{
+
+    margin-top:20px;
+
+}
