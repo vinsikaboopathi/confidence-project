@@ -1,6 +1,2 @@
 ﻿# confidence-project
 # confidence-project
-# TEAM MEMBERS 
-
-Vinsika S B - @vinsikaboopathi
-Naveen S - @Naveenselvaraj12
